@@ -9,12 +9,35 @@
 // [-1, -2, -3] == 0, jika semua bilangan negatif, kita bisa mengembalikan nilai 0 
 
 
+//solusi 1 :
+var prompt = require('prompt-sync')();
 let numInput = prompt("Masukan urutan bilangan dengan pemisah spasi:");
 let arr = numInput.split(" ").map(Number);
 
 // jika tidak ada elemen dalam array, jika semua bilangan negatif, dapat mengembalikan nilai 0
 let maxSum = 0; 
 
-// TODO: answer here
+//TODO: answer here
 
+for (let i = 0; i < arr.length; i++) {
+    let sumFixedStart = 0;
+    for (let j = i; j < arr.length; j++) {
+        sumFixedStart += arr[j];
+        maxSum = Math.max(maxSum, sumFixedStart);
+    }
+}
 console.log(maxSum);
+
+
+// //solusi 2 :
+let partialSum = 0;
+for (let item of arr){
+    partialSum += item;
+    maxSum = Math.max(partialSum);
+
+    if (partialSum < 0){
+        partialSum = 0;
+    }
+}
+console.log(maxSum);
+
